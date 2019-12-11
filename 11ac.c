@@ -108,6 +108,19 @@ mwifiex_fill_vht_cap_info(struct mwifiex_private *priv,
 				cpu_to_le32(adapter->usr_dot_11ac_dev_cap_bg);
 }
 
+static void
+mwifiex_Test_vht_cap_info(struct mwifiex_private *priv,
+			  struct ieee80211_vht_cap *vht_cap, u8 bands)
+{
+	struct mwifiex_adapter *adapter = priv->adapter;
+
+	if (bands & BAND_A)
+		vht_cap->vht_cap_info =
+				cpu_to_le32(adapter->usr_dot_11ac_dev_cap_a);
+	else
+		vht_cap->vht_cap_info =
+				cpu_to_le32(adapter->usr_dot_11ac_dev_cap_bg);
+}
 void mwifiex_fill_vht_cap_tlv(struct mwifiex_private *priv,
 			      struct ieee80211_vht_cap *vht_cap, u8 bands)
 {
